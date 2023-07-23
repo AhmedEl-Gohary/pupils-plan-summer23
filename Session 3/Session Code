@@ -11,20 +11,16 @@ public class Main {
 		//Given an array a of size 1<=n<=1e5 and q queries 1<=q<=1e5, each one consists of two indices
 		// l and r (1<=l<=r<=n). You are required to find the sum a[l] + a[l+1] + ... + a[r]
 		prefixSum();         //O(n+q)
-		
+
+
+		//You have an empty array a of size 1<=n<=1e5 and q queries 1<=q<=1e5, each one consists of two indices
+		// l , r and val (1<=l<=r<=n , 1 <= val <= 10^9). You are required the maximum element of the array after performing all the queries.
+		prefSum2();
 		
 		//(2)All divisors of a number n
 		
 		//Given an integer n (1<=n<=1e12) print all divisors of n
 		allDivisors();       //O(sqrt(n))
-		
-		
-		
-		
-		//(3)Prime factors
-		
-    //Given an integer n (1<=n<=1e12) print all its prime factors
-		primeFactors();     //O(sqrt(n)) 
 		
 		
 		
@@ -47,6 +43,25 @@ public class Main {
 			int l = sc.nextInt()-1;
 			int r = sc.nextInt()-1;
 			pw.println(pref[r] - ((l==0)?0:pref[l-1])) ;
+		}
+	}
+
+	public static void prefixSum2() throws Exception{
+		int n = sc.nextInt();
+		int q = sc.nextInt();
+		int[] arr = new int[n];
+		for(int i=0 ; i<n ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		int[] pref = new int[n+1] ;
+		while(q-- > 0) {
+			int l = sc.nextInt()-1;
+			int r = sc.nextInt()-1;
+			pref[l]++;
+			pref[r+1]--;
+		}
+		for(int i=1 ; i<n ; i++) {
+			pref[i] = arr[i] + pref[i-1];
 		}
 	}
 	
